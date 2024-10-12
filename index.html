@@ -7,20 +7,53 @@
 </head>
 <body>
     <script>
-        // Toma de datos por url
+        
+        // Detectar si es un dispositivo móvil
+        function esMovil() {
+            return /Mobi|Android/i.test(navigator.userAgent);
+        }
 
         const urlParams = new URLSearchParams(window.location.search);
-
         const pdf_URL = urlParams.get('pdf_URL');
-        
 
+        if (esMovil()) {
+            // Usar PDF.js para mostrar el PDF en móviles
+            document.getElementById("miIframe").style.display = 'none'; // Ocultar el iframe
+            const canvas = document.createElement('canvas');
+            document.body.appendChild(canvas);
+            
+            var pdfjsLib = window['pdfjs-dist/build/pdf'];
+            pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.943/pdf.worker.min.js';
+
+            var loadingTask = pdfjsLib.getDocument(pdf_URL);
+            loadingTask.promise.then(function(pdf) {
+                pdf.getPage(1).then(function(page) {
+                    var scale = 1.5;
+                    var viewport = page.getViewport({scale: scale});
+
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+
+                    var renderContext = {
+                        canvasContext: canvas.getContext('2d'),
+                        viewport: viewport
+                    };
+                    page.render(renderContext);
+                });
+            });
+        } else {
+            // Usar iframe normalmente en escritorio
+            document.getElementById("pdf_URL_H").innerText = pdf_URL;
+            document.getElementById("miIframe").src = pdf_URL;
+        }
     </script>
+
     
     <h1>PDF: <h1 id="pdf_URL_H"></h1></h1>
     
     <!-- presentador de pfs -->
 
-    <iframe id="miIframe" frameborder="0" width="100%" height="3000px"></iframe>
+    <iframe id="miIframe" type="application/pdf" frameborder="0" width="100%" height="3000px"></iframe>
 
     <script>
         //insercion de datos a html
