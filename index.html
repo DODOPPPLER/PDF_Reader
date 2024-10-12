@@ -6,24 +6,24 @@
     <title>Document</title>
 </head>
 <body>
-    <script>
-
-        const urlParams = new URLSearchParams(window.location.search);
-        const pdf_URL = urlParams.get('pdf_URL');
-        
-    </script>
-    
     <h1>PDF: <h1 id="pdf_URL_H"></h1></h1>
     
     <!-- presentador de pfs -->
 
-        <iframe src="https://docs.google.com/gview?url=https://qrs0y0pdfs.blob.core.windows.net/pdfsmiofibrilares/DISTRIBUCIÓN GENERAL SUBESTACIÓN RURAL 220 V.pdf&embedded=true" frameborder="0" width="100%" height="600px"></iframe>></iframe>
-
+    <iframe id="miIframe" frameborder="0" width="100%" height="600px"></iframe>
 
     <script>
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const pdf_URL = urlParams.get('pdf_URL');
+
+        const googleViewer= 'https://docs.google.com/gview?url=' + pdf_URL + '&embedded=true';
         //insercion de datos a html
+
         document.getElementById("pdf_URL_H").innerText = pdf_URL;
-        document.getElementById("miIframe").src = pdf_URL;
+        document.getElementById("miIframe").src = googleViewer;
+
+
 
     </script>
 
