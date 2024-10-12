@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Toma de datos por url
+
+        const urlParams = new URLSearchParams(window.location.search);
+
+        const pdf_URL = urlParams.get('pdf_URL');
+        
+
+    </script>
+    
+    <h1>PDF: <h1 id="pdf_URL_H"></h1></h1>
+    
+    <!-- presentador de pfs -->
+
+    <iframe id="miIframe" frameborder="0" width="100%" height="3000px"></iframe>
+
+    <script>
+        //insercion de datos a html
+        document.getElementById("pdf_URL_H").innerText = pdf_URL;
+        document.getElementById("miIframe").src = pdf_URL;
+
+    </script>
+
+</body>
+</html>
