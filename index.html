@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <title>PDF</title>
 </head>
 <body>
-    <h1>PDF: <h1 id="pdf_URL_H"></h1></h1>
+    <h1><span id="pdf_URL_H"></span></h1>
     
     <!-- presentador de pfs -->
 
@@ -17,10 +18,15 @@
         const urlParams = new URLSearchParams(window.location.search);
         const pdf_URL = urlParams.get('pdf_URL');
 
+        const regex = /\/([^\/]+\.pdf)$/;
+        const match = pdf_URL.match(regex);
+        var pdfName = match[1];
+
+
         const googleViewer= 'https://docs.google.com/gview?url=' + pdf_URL + '&embedded=true';
         //insercion de datos a html
 
-        document.getElementById("pdf_URL_H").innerText = pdf_URL;
+        document.getElementById("pdf_URL_H").innerText = pdfName;
         document.getElementById("miIframe").src = googleViewer;
 
 
