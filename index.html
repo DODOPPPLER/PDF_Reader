@@ -3,29 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title id="pdfNameT"></title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>PDF: <h1 id="pdf_URL_H"></h1></h1>
-    
-    <!-- presentador de pfs -->
+    <script src="url_getter.js" defer></script>
 
-    <iframe id="miIframe" frameborder="0" width="100%" height="600px"></iframe>
+    <div id="container">
+        <div class="viewer_pdf">
+            <h1><span id="pdfNameH"></span></h1>
+                    
+                    <!-- presentador de pfs -->
 
-    <script>
+            <iframe id="miIframe" frameborder="0" width="100%" height="780" scrolling="no" style="border: none;"></iframe>
 
-        const urlParams = new URLSearchParams(window.location.search);
-        const pdf_URL = urlParams.get('pdf_URL');
-
-        const googleViewer= 'https://docs.google.com/gview?url=' + pdf_URL + '&embedded=true';
-        //insercion de datos a html
-
-        document.getElementById("pdf_URL_H").innerText = pdf_URL;
-        document.getElementById("miIframe").src = googleViewer;
-
-
-
-    </script>
-
+        </div>        
+    </div>
 </body>
 </html>
